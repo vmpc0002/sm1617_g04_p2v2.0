@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">practica1</string>
+    <string name="autenticacion_user">Usuario</string>
+    <string name="autenticacion_user_hint">Nombre de usuario</string>
+    <string name="autenticacion_pass">Contraseña</string>
+    <string name="autenticacion_pass_hint">********</string>
+    <string name="autenticacion_ip">Direccion IP</string>
+    <string name="autenticacion_ip_hint">127.0.0.1</string>
+    <string name="autenticacion_port">Puerto</string>
+    <string name="autenticacion_port_hint">80</string>
+    <string name="autenticacion_boton">Enviar</string>
+</resources>
