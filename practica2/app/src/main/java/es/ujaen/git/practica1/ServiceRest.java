@@ -23,7 +23,7 @@ public class ServiceRest {
         urlget = Servidor+mensajeReq;
     }
 
-    private String reqGet(){
+    public String reqGet(){
         String res = "";
         try{
             URL url = new URL(urlget);

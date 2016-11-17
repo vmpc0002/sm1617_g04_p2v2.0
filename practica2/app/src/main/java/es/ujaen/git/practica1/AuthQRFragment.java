@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class AuthQRFragment extends Fragment {
+public class AuthQRFragment extends Fragment{
 
     private Button mButton;
     public AuthQRFragment() {
@@ -44,7 +44,8 @@ public class AuthQRFragment extends Fragment {
         if (requestCode == 0) {
             if (resultCode == MainActivity.RESULT_OK) {
                 String contents = data.getStringExtra("SCAN_RESULT");
-
+                ParseQR parseQR =  new ParseQR(contents);
+                parseQR.parseado();
             } else {
                 //Quiere decir que NO se obtuvo resultado
                 Toast toast = Toast.makeText(getActivity(),
@@ -53,16 +54,36 @@ public class AuthQRFragment extends Fragment {
             }
         }
     }
-    private class AutenticacionQR extends AsyncTask<String,Void, String>{
+    private class AutenticacionQR extends AsyncTask<String,Void, String> implements Cliente{
         @Override
         protected String doInBackground(String... params) {
-            ServiceRest rest = new ServiceRest(params[0]);
             return null;
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+        }
+
+        @Override
+        public void autentificacion(String cod_mensaje, String num_session) {
+            Datos datos = new Datos(0,cod_mensaje, num_session);
+            Mensaje mensaje =  new Mensaje(0, datos);
+        }
+
+        @Override
+        public void listar() {
+
+        }
+
+        @Override
+        public void pedido(String cod_pedido, String cantidad) {
+
+        }
+
+        @Override
+        public void cerrar_session(String cod_mensaje, String num_session) {
+
         }
     }
 }
