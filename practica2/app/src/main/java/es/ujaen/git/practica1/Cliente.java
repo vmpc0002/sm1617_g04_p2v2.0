@@ -1,9 +1,5 @@
 package es.ujaen.git.practica1;
 
-/**
- * Created by windic on 15/11/2016.
- */
-
 public interface Cliente {
 
     public void autentificacion (String cod_mensaje, String num_session);

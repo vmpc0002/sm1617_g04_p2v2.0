@@ -45,7 +45,8 @@ public class AuthQRFragment extends Fragment{
             if (resultCode == MainActivity.RESULT_OK) {
                 String contents = data.getStringExtra("SCAN_RESULT");
                 ParseQR parseQR =  new ParseQR(contents);
-                parseQR.parseado();
+                boolean var = parseQR.parseado();
+                Toast.makeText(getActivity(), Boolean.toString(var), Toast.LENGTH_SHORT).show();
             } else {
                 //Quiere decir que NO se obtuvo resultado
                 Toast toast = Toast.makeText(getActivity(),

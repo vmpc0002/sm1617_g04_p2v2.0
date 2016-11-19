@@ -4,37 +4,53 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-/**
- * Created by windic on 17/11/2016.
- */
 
-public class ParseQR {
-    //http://192.168.1.1/Servidor_g05/autentica.php?cod_mesa=""&num_session=""
+public class ParseQR implements Service {
+
     URL qr = null;
-    private ArrayList<String> params = new ArrayList();
-    // TODO: 17/11/2016 crear la interfaz que almacene las constantes de la aplicacion.
-    final static String servidor = "192.168.1.1";
-    public ParseQR (String contenido){
+    public ArrayList<String> valores = new ArrayList<>();
+
+    public ParseQR(String contenido) {
         try {
-            qr =  new URL(contenido);
-        }catch (MalformedURLException ex){
+            qr = new URL(contenido);
+        } catch (MalformedURLException ex) {
         }
     }
-    private String parseoServicio(){
-        return qr.getPath().substring(qr.getPath().indexOf("/"), qr.getPath().lastIndexOf("/") + 1);
+
+    private String parseoServicio() {
+        return qr.getPath().substring(qr.getPath().indexOf("/") + 1, qr.getPath().lastIndexOf("/"));
     }
-    private String parseoHeader(){
-        return qr.getFile().substring(qr.getFile().lastIndexOf("/") + 1,qr.getFile().lastIndexOf("?"));
+
+    private String parseoHeader() {
+        return qr.getFile().substring(qr.getFile().lastIndexOf("/") + 1, qr.getFile().lastIndexOf("?"));
     }
-    public boolean parseado (){
+
+    private boolean parseoParams() {
+        String str_params = qr.getFile().substring(qr.getFile().lastIndexOf("?") + 1, qr.getFile().length());
+        String[] parse_param = str_params.split("&");
+        if (parse_param.length == 2) {
+            for (int i = 0; i < parse_param.length; i++) {
+                String[] param_valor = parse_param[i].split("=");
+                if (param_valor[0].equals(params[0][i])) {
+                    valores.add(param_valor[1]);
+                }
+            }
+        }
+        if (valores.size() == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean parseado() {
         if (qr != null) {
-            if (qr.getProtocol().equals("http") && qr.getHost().equals(servidor) && parseoServicio().equals("/Servidor_g05/")
-                    && parseoHeader().equals("Autentica.php")) {
+            if (qr.getProtocol().equals("http") && qr.getHost().equals(servidor) && parseoServicio().equals(servicio)
+                    && parseoHeader().equals(headers[0]) && parseoParams()) {
                 return true;
             } else {
                 return false;
             }
-        }
-        else return false;
+        } else return false;
     }
 }

@@ -15,23 +15,22 @@ import java.net.URLConnection;
  * Created by windic on 13/11/2016.
  */
 
-public class ServiceRest {
-    final static String Servidor = "http://192.168.1.1/Servidor_g05/";
+public class ServiceRest implements Service {
     private String urlget;
 
     public ServiceRest(String mensajeReq) {
-        urlget = Servidor+mensajeReq;
+        urlget = "http://"+servidor+"/"+servicio+"/"+mensajeReq;
     }
 
     public String reqGet(){
         String res = "";
         try{
+            char[] buffer = new char[1000];
             URL url = new URL(urlget);
             URLConnection conexion = url.openConnection();
             conexion.connect();
             InputStream in = conexion.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            char[] buffer = new char[1000];
             int leido;
             while ((leido = br.read(buffer)) > 0) {
                 res = res + new String(buffer, 0, leido);

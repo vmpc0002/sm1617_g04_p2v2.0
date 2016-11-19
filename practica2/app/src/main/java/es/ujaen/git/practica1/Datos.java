@@ -3,25 +3,16 @@ package es.ujaen.git.practica1;
 import java.util.ArrayList;
 
 /**
- * Created by windic on 14/11/2016.
- */
-
-/**
  * Clase que proporciona una estructura a los datos que van a ser enviado mediante el metodo Get.
  */
-public class Datos {
+public class Datos implements Service{
 
-    // posibles parametros del servicio
-    final static protected String params[][] = {{"cod_mesa", "num_session"}, {}, {"cod_productos", "cantidad"},
-            {"cod_mesa", "num_session"}};
-    //values valores de los parametros
     protected ArrayList<String> values = new ArrayList<>();
-    //parametros a usar en función del tipo de mensaje.
     protected String [] param;
 
     /**
      * Constructor de la clase
-     * @param tipo parametros de:
+     * @param tipo tipo de parametros:
      *             0:Autentificación
      *             1:Listar
      *             2:Pedido
@@ -43,7 +34,7 @@ public class Datos {
 
     /**
      *
-     * @return devuelve la cadena de caracteres ya formateada para ser enviada mediante el metodo Get.
+     * @return devuelve la cadena de caracteres ya formateada para enviar parametros con formato de una peticion Get.
      */
     @Override
     public String toString() {
