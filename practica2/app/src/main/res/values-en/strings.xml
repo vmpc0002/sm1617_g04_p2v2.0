@@ -7,4 +7,7 @@
     <string name="autenticacion_port">Port</string>
     <string name="autenticacion_user">User</string>
     <string name="autenticacion_user_hint">Username</string>
+    <string name="autenticacion_ip_hint">127.0.0.1</string>
+    <string name="autenticacion_pass_hint">********</string>
+    <string name="autenticacion_port_hint">80</string>
 </resources>

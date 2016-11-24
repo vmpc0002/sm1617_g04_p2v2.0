@@ -19,19 +19,19 @@ public class ServiceRest implements Service {
     private String urlget;
 
     public ServiceRest(String mensajeReq) {
-        urlget = "http://"+servidor+"/"+servicio+"/"+mensajeReq;
+        urlget = "http://"+servidor+":"+port+"/"+servicio+"/"+mensajeReq;
     }
 
     public String reqGet(){
         String res = "";
         try{
-            char[] buffer = new char[1000];
             URL url = new URL(urlget);
             URLConnection conexion = url.openConnection();
             conexion.connect();
             InputStream in = conexion.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             int leido;
+            char[] buffer = new char[1000];
             while ((leido = br.read(buffer)) > 0) {
                 res = res + new String(buffer, 0, leido);
             }

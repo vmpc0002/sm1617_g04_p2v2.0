@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class ParseQR implements Service {
 
-    URL qr = null;
-    public ArrayList<String> valores = new ArrayList<>();
+    private URL qr = null;
+    private ArrayList<String> valores = new ArrayList<>();
 
     public ParseQR(String contenido) {
         try {
@@ -36,21 +36,24 @@ public class ParseQR implements Service {
                 }
             }
         }
-        if (valores.size() == 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return valores.size() == 2;
     }
 
     public boolean parseado() {
         if (qr != null) {
-            if (qr.getProtocol().equals("http") && qr.getHost().equals(servidor) && parseoServicio().equals(servicio)
+            if (qr.getProtocol().equals("http") && qr.getHost().equals(servidor) && qr.getPort() == port && parseoServicio().equals(servicio)
                     && parseoHeader().equals(headers[0]) && parseoParams()) {
                 return true;
             } else {
                 return false;
             }
         } else return false;
+    }
+
+    public String getCod_mesa(){
+        return valores.get(0);
+    }
+    public String getNum_session(){
+        return valores.get(1);
     }
 }

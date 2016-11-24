@@ -113,14 +113,8 @@ public class AuthFragment extends Fragment {
         mButtonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Bajo soporte", Toast.LENGTH_SHORT).show();
-                /*extraer();
-                Intent intent_sercicioremoto = new Intent(getActivity(), ServicioRemotoActivity.class);
-                intent_sercicioremoto.putExtra("user", mAutentica.getUser());
-                intent_sercicioremoto.putExtra("pass", mAutentica.getPass());
-                intent_sercicioremoto.putExtra("port", mAutentica.getPort());
-                intent_sercicioremoto.putExtra("ip", mAutentica.getIP());
-                startActivity(intent_sercicioremoto);*/
+                Toast.makeText(getActivity(), "En desarrollo", Toast.LENGTH_SHORT).show();
+
             }
         });
         return fragmento;
