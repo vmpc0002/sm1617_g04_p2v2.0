@@ -25,6 +25,7 @@ public class ServiceRest implements Service {
     public String reqGet(){
         String res = "";
         try{
+            urlget = urlget.replace(" ", "%20");
             URL url = new URL(urlget);
             URLConnection conexion = url.openConnection();
             conexion.connect();
@@ -37,6 +38,7 @@ public class ServiceRest implements Service {
             }
         }catch(Exception ex){
             ex.printStackTrace();
+            res ="ER";
         }
         return res;
     }

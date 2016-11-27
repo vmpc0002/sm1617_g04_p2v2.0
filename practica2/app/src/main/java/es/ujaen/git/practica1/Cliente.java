@@ -6,4 +6,5 @@ public interface Cliente {
     public void listar();
     public void pedido(String cod_pedido, String cantidad);
     public void cerrar_session(String cod_mensaje, String num_session);
+    public String verificacion(String sesion_id, String expires);
 }

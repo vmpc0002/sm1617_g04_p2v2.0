@@ -1,6 +1,8 @@
 package es.ujaen.git.practica1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class AuthQRFragment extends Fragment {
+public class AuthQRFragment extends Fragment implements Service {
 
     private Button mButton;
     private ParseQR parseQR;
@@ -69,14 +71,18 @@ public class AuthQRFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             ParseServerResponses serverResponses = new ParseServerResponses(s);
-            if (serverResponses.autentica() == true){
-                Intent intent = new Intent(getActivity(),VistaClientes.class);
+            if (serverResponses.autentica() == true) {
+                SharedPreferences pref = getActivity().getSharedPreferences("MiPref", 0);
+                SharedPreferences.Editor sharedEditor = pref.edit();
+                sharedEditor.putString(lresp[0], serverResponses.getSessionID());
+                sharedEditor.putString(lresp[1], serverResponses.getExpires());
+                sharedEditor.commit();
+                Intent intent = new Intent(getActivity(), VistaClientes.class);
                 startActivity(intent);
-            }
-            else{
+            } else {
 
             }
-            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+
         }
 
         @Override
@@ -98,6 +104,11 @@ public class AuthQRFragment extends Fragment {
 
         @Override
         public void cerrar_session(String cod_mensaje, String num_session) {
+        }
+
+        @Override
+        public String verificacion(String sesion_id, String expires) {
+            return null;
         }
     }
 }

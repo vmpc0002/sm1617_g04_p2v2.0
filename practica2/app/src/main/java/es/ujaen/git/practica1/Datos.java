@@ -22,6 +22,7 @@ public class Datos implements Service{
      *                tipo = 1: null.
      *                tipo = 2: 2 valores.
      *                tipo = 3: 2 valores.
+     *                tipo = 4: 2 valores.
      */
     public Datos (int tipo, String...Valores){
         param = params[tipo];

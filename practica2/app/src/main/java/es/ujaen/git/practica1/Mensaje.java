@@ -17,6 +17,7 @@ public class Mensaje implements Service {
      *             1:Listar
      *             2:Pedido
      *             3:cerrar_session
+     *             4:verificacion
      * @param datos parametros del mensaje
      */
     public Mensaje(int tipo, Datos datos){
