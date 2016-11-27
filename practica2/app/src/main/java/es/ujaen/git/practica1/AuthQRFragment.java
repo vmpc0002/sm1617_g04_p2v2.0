@@ -1,6 +1,5 @@
 package es.ujaen.git.practica1;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -9,8 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -18,7 +16,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class AuthQRFragment extends Fragment implements Service {
 
-    private Button mButton;
+    private ImageButton mButton;
     private ParseQR parseQR;
 
     public AuthQRFragment() {
@@ -29,8 +27,7 @@ public class AuthQRFragment extends Fragment implements Service {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View fragmento = inflater.inflate(R.layout.fragment_auth_qr, container, false);
-        mButton = (Button) fragmento.findViewById(R.id.autenticacionQR_scan_button);
-        //textView = (TextView) fragmento.findViewById(R.id.textView);
+        mButton = (ImageButton) fragmento.findViewById(R.id.autenticacionQR_scan_button);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,18 +48,18 @@ public class AuthQRFragment extends Fragment implements Service {
                 String contents = data.getStringExtra("SCAN_RESULT");
                 parseQR = new ParseQR(contents);
                 if (parseQR.parseado() == true) {
-                    AutenticacionQR auth = new AutenticacionQR();
+                    Autenticator auth = new Autenticator();
                     auth.execute(parseQR.getCod_mesa(), parseQR.getNum_session());
                 } else {
-                    Toast.makeText(getActivity(), "Fail authentication!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.fail_auth, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(getActivity(), "No scan data received!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.no_qr, Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private class AutenticacionQR extends AsyncTask<String, Void, String> implements Cliente {
+    private class Autenticator extends AsyncTask<String, Void, String> implements Cliente {
         @Override
         protected String doInBackground(String... params) {
             return autentificacion(params[0], params[1]);
@@ -72,7 +69,7 @@ public class AuthQRFragment extends Fragment implements Service {
         protected void onPostExecute(String s) {
             ParseServerResponses serverResponses = new ParseServerResponses(s);
             if (serverResponses.autentica() == true) {
-                SharedPreferences pref = getActivity().getSharedPreferences("MiPref", 0);
+                SharedPreferences pref = getActivity().getSharedPreferences(sharedpreferences, 0);
                 SharedPreferences.Editor sharedEditor = pref.edit();
                 sharedEditor.putString(lresp[0], serverResponses.getSessionID());
                 sharedEditor.putString(lresp[1], serverResponses.getExpires());
@@ -80,7 +77,7 @@ public class AuthQRFragment extends Fragment implements Service {
                 Intent intent = new Intent(getActivity(), VistaClientes.class);
                 startActivity(intent);
             } else {
-
+                Toast.makeText(getActivity(), R.string.fail_auth, Toast.LENGTH_SHORT).show();
             }
 
         }

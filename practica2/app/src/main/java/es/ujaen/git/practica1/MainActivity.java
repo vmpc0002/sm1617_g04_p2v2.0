@@ -1,19 +1,12 @@
 package es.ujaen.git.practica1;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Toast;
 
 /**
  * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
@@ -31,12 +24,13 @@ public class MainActivity extends AppCompatActivity implements Service {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.id_viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.activity_main_pager_viewpager);
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+        //TODO R.string.menu_0 a clientes;
         adapter.addFragment(new AuthQRFragment(), "clientes");
         adapter.addFragment(new AuthFragment(), "propietarios");
         viewPager.setAdapter(adapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_main_tabs_tablayout);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -44,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements Service {
     protected void onResume() {
         super.onResume();
         String sesion_id, expires;
-        SharedPreferences preferences = getSharedPreferences("MiPref", 0);
+        SharedPreferences preferences = getSharedPreferences(sharedpreferences, 0);
         sesion_id = preferences.getString(lresp[0], null);
         expires = preferences.getString(lresp[1], null);
         if (sesion_id != null && expires != null) {

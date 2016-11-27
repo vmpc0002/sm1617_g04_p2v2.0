@@ -5,7 +5,6 @@ package es.ujaen.git.practica1;
  * @version 1.0
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -113,7 +112,7 @@ public class AuthFragment extends Fragment {
         mButtonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "En desarrollo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.develop, Toast.LENGTH_SHORT).show();
 
             }
         });

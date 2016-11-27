@@ -9,4 +9,11 @@
     <string name="autenticacion_port">Puerto</string>
     <string name="autenticacion_port_hint">80</string>
     <string name="autenticacion_boton">Enviar</string>
+    <string name="develop">En desarrollo</string>
+    <string name="fail_auth">Fallo en la autenticacion</string>
+    <string name="no_qr">No se ha recibido ningun dato</string>
+    <string name="menu_0">Clientes</string>
+    <string name="menu_1">Propietarios</string>
+    <string name="welcome">Bienvenido al servicio</string>
+    <string name="logout">Cerrar Sesion</string>
 </resources>

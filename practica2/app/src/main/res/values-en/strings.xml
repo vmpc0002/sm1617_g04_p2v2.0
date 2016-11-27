@@ -10,4 +10,11 @@
     <string name="autenticacion_ip_hint">127.0.0.1</string>
     <string name="autenticacion_pass_hint">********</string>
     <string name="autenticacion_port_hint">80</string>
+    <string name="develop">In development</string>
+    <string name="fail_auth">Fail in the authentication</string>
+    <string name="no_qr">No scan data received</string>
+    <string name="menu_0">Clients</string>
+    <string name="menu_1">Owners</string>
+    <string name="welcome">Welcome to the service</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -14,12 +14,13 @@ import java.util.List;
 public class PagerAdapter extends FragmentPagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList();
-    private final List<String> mFragmentTitleNames =  new ArrayList();
+    private final List<String> mFragmentTitleNames = new ArrayList();
 
-    public PagerAdapter (FragmentManager fm){
+    public PagerAdapter(FragmentManager fm) {
         super(fm);
     }
-    public void addFragment(Fragment fragment, String title){
+
+    public void addFragment(Fragment fragment, String title) {
         mFragmentList.add(fragment);
         mFragmentTitleNames.add(title);
     }

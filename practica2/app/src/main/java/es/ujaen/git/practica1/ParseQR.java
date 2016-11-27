@@ -40,20 +40,25 @@ public class ParseQR implements Service {
     }
 
     public boolean parseado() {
-        if (qr != null) {
-            if (qr.getProtocol().equals("http") && qr.getHost().equals(servidor) && qr.getPort() == port && parseoServicio().equals(servicio)
-                    && parseoHeader().equals(headers[0]) && parseoParams()) {
-                return true;
-            } else {
-                return false;
-            }
-        } else return false;
+        try {
+            if (qr != null) {
+                if (qr.getProtocol().equals("http") && qr.getHost().equals(servidor) && qr.getPort() == port && parseoServicio().equals(servicio)
+                        && parseoHeader().equals(headers[0]) && parseoParams()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }else return false;
+        }catch (Exception ex){
+            return false;
+        }
     }
 
-    public String getCod_mesa(){
+    public String getCod_mesa() {
         return valores.get(0);
     }
-    public String getNum_session(){
+
+    public String getNum_session() {
         return valores.get(1);
     }
 }
