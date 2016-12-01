@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true">
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -25,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_user"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText
                     android:id="@+id/autenticacion_user_edittext"
@@ -34,7 +39,7 @@
                     android:ems="16"
                     android:hint="@string/autenticacion_user_hint"
                     android:inputType="textPersonName"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
 
             </TableRow>
 
@@ -46,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_pass"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText
                     android:id="@+id/autenticacion_pass_edittext"
@@ -55,7 +60,7 @@
                     android:ems="16"
                     android:hint="@string/autenticacion_pass_hint"
                     android:inputType="textPassword"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
             </TableRow>
 
             <TableRow>
@@ -66,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_ip"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText
                     android:id="@+id/autenticacion_ip_edittext"
@@ -75,7 +80,7 @@
                     android:ems="16"
                     android:hint="@string/autenticacion_ip_hint"
                     android:inputType="text"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
             </TableRow>
 
             <TableRow>
@@ -86,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_port"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText
                     android:id="@+id/autenticacion_port_edittext"
@@ -95,20 +100,22 @@
                     android:ems="16"
                     android:hint="@string/autenticacion_port_hint"
                     android:inputType="number"
-                    android:textSize="@dimen/tamaño_letra" />
+                    android:textSize="@dimen/tamaño_letra_land" />
 
             </TableRow>
+
 
         </TableLayout>
 
         <Button
             android:id="@+id/autenticacion_envia_boton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:onClick="pulsar"
             android:text="@string/autenticacion_boton" />
 
     </LinearLayout>
-
+</ScrollView>
 
 </RelativeLayout>
