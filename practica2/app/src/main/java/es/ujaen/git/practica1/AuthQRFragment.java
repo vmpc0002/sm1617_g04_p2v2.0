@@ -92,15 +92,18 @@ public class AuthQRFragment extends Fragment implements Service {
         }
 
         @Override
-        public void listar() {
+        public String listar() {
+            return null;
         }
 
         @Override
-        public void pedido(String cod_pedido, String cantidad) {
+        public String pedido(String cod_pedido, String cantidad) {
+            return null;
         }
 
         @Override
-        public void cerrar_session(String cod_mensaje, String num_session) {
+        public String cerrar_session(String cod_mensaje, String num_session) {
+            return null;
         }
 
         @Override
