@@ -21,6 +21,8 @@
             android:id="@+id/autenticacion_table_tablelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/fondo2"
+            android:layout_margin="@dimen/activity_vertical_margin"
             android:paddingStart="@dimen/activity_vertical_margin">
 
             <TableRow>
@@ -31,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_user"
+                    android:textColor="@color/ntext"
                     android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText
@@ -52,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_pass"
+                    android:textColor="@color/ntext"
                     android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText
@@ -72,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_ip"
+                    android:textColor="@color/ntext"
                     android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText
@@ -92,6 +97,7 @@
                     android:layout_height="wrap_content"
                     android:ems="8"
                     android:text="@string/autenticacion_port"
+                    android:textColor="@color/ntext"
                     android:textSize="@dimen/tamaño_letra_land" />
 
                 <EditText

@@ -2,6 +2,7 @@ package es.ujaen.git.practica1;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,17 +25,23 @@ public class AuthQRFragment extends Fragment implements Service {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View fragmento = inflater.inflate(R.layout.fragment_auth_qr, container, false);
         mButton = (ImageButton) fragmento.findViewById(R.id.autenticacionQR_scan_button);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-                intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
-                startActivityForResult(intent, 0);
+                //TODO instalador de la apk en caso de que no este.
+               try {
+                   Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 
+                   intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
+                   startActivityForResult(intent, 0);
+               }catch (Exception ex){
+                   Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.zxing.client.android"));
+                   startActivity(intent);
+               }
             }
         });
         return fragmento;

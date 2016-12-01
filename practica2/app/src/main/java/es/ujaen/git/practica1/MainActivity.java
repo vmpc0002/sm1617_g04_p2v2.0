@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
@@ -14,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class MainActivity extends AppCompatActivity implements Service {
 
+    TabLayout tabLayout;
+    ViewPager viewPager;
     /**
      * Metodo encargado de crear la Activity principal. Donde se vincula la activity al layout principal
      * y realiza la transacción con el fragmento Authfragment.
@@ -24,20 +27,22 @@ public class MainActivity extends AppCompatActivity implements Service {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.activity_main_pager_viewpager);
+        viewPager = (ViewPager) findViewById(R.id.activity_main_pager_viewpager);
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-        //TODO R.string.menu_0 a clientes;
-        adapter.addFragment(new AuthQRFragment(), "clientes");
-        adapter.addFragment(new AuthFragment(), "propietarios");
+        adapter.addFragment(new AuthQRFragment(), getString(R.string.menu_0));
+        adapter.addFragment(new AuthFragment(), getString(R.string.menu_1));
         viewPager.setAdapter(adapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_main_tabs_tablayout);
+        tabLayout = (TabLayout) findViewById(R.id.activity_main_tabs_tablayout);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         String sesion_id, expires;
+        tabLayout.setVisibility(View.INVISIBLE);
+        viewPager.setVisibility(View.INVISIBLE);
         SharedPreferences preferences = getSharedPreferences(sharedpreferences, 0);
         sesion_id = preferences.getString(lresp[0], null);
         expires = preferences.getString(lresp[1], null);
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements Service {
             Verificacion verf = new Verificacion();
             verf.execute(sesion_id, expires);
 
+        }else {
+            tabLayout.setVisibility(View.VISIBLE);
+            viewPager.setVisibility(View.VISIBLE);
         }
     }
 
@@ -61,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements Service {
                 Intent intent = new Intent(MainActivity.this, VistaClientes.class);
                 startActivity(intent);
             } else {
-
+                tabLayout.setVisibility(View.VISIBLE);
+                viewPager.setVisibility(View.VISIBLE);
             }
 
         }
