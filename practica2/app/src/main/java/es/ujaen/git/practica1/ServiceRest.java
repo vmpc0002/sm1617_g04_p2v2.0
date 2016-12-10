@@ -16,12 +16,24 @@ import java.net.URLConnection;
  */
 
 public class ServiceRest implements Service {
+    //Definimos variables
     private String urlget;
 
+    /**
+     * Constructor de la clase.
+     * Le pasamos mensajeReq donde van los parametros.
+     * Tambien damos forma a la url.
+     * @param mensajeReq
+     */
     public ServiceRest(String mensajeReq) {
         urlget = "http://" + servidor + ":" + port + "/" + servicio + "/" + mensajeReq;
     }
 
+    /**
+     *Método que realiza la conexión con el servidor mediante una url y obtiene como resultado la respuesta del servidor
+     *
+     * @return
+     */
     public String reqGet() {
         String res = "";
         try {

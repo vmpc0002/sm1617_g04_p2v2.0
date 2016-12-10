@@ -1,5 +1,8 @@
 package es.ujaen.git.practica1;
 
+/**
+ * Interfaz en la que definimos todos los parámetros necesarios para usar en otras clases.
+ */
 public interface Service {
 
     public static final String servidor = "192.168.1.20";
