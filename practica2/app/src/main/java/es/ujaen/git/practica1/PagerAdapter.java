@@ -1,5 +1,8 @@
 package es.ujaen.git.practica1;
-
+/**
+ * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
+ * @version 1.0
+ */
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,7 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by windic on 08/11/2016.
+ * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
+ * @version 1.0
+ */
+
+/**
+ * Metodo encargado de realizar la transacción entre fragmentos mediante la toolbar
  */
 
 public class PagerAdapter extends FragmentPagerAdapter {
