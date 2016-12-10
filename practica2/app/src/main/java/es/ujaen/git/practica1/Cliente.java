@@ -1,6 +1,11 @@
 package es.ujaen.git.practica1;
 
 /**
+ * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
+ * @version 1.0
+ */
+
+/**
  * Intefaz Cliente el cual posee todas las acciones que una aplicación cliente puede realizar
  * respecto al servidor.
  */

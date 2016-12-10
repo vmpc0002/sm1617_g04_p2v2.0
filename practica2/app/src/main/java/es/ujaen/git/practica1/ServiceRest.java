@@ -12,9 +12,9 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * Created by windic on 13/11/2016.
+ * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
+ * @version 1.0
  */
-
 public class ServiceRest implements Service {
     //Definimos variables
     private String urlget;

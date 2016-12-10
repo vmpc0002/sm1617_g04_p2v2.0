@@ -1,5 +1,8 @@
 package es.ujaen.git.practica1;
-
+/**
+ * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
+ * @version 1.0
+ */
 import java.util.HashMap;
 import java.util.Map;
 

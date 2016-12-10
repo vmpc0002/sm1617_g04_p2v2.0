@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+/**
+ * Activity mostrada tras la autenticaión correcta, incluye un botón de cerrar sesión el cual
+ * vacía los valores de sesión almacenados.
+ */
 public class VistaClientes extends AppCompatActivity implements Service {
-    /**
-     * Metodo encargado de la recepción de los valores de autentificación.
-     *
-     * @param savedInstanceState
-     */
+
     ImageButton cerrar_sesion;
 
     @Override

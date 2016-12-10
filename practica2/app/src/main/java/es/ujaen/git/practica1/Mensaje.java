@@ -1,4 +1,8 @@
 package es.ujaen.git.practica1;
+/**
+ * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
+ * @version 1.0
+ */
 
 /**
  *  Clase que proporciona una estuctura a los mensajes para que sean correctamente enviados por el metodo Get.
