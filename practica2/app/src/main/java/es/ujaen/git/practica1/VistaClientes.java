@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class VistaClientes extends AppCompatActivity implements Service {
     /**
@@ -18,13 +19,13 @@ public class VistaClientes extends AppCompatActivity implements Service {
      *
      * @param savedInstanceState
      */
-    Button cerrar_sesion;
+    ImageButton cerrar_sesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_clientes);
-        cerrar_sesion = (Button) findViewById(R.id.vistaclientes_cerrarsesion_button);
+        cerrar_sesion = (ImageButton) findViewById(R.id.vistaclientes_cerrarsesion_button);
         cerrar_sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

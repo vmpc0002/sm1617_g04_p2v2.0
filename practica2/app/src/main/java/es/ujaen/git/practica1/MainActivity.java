@@ -11,15 +11,16 @@ import android.view.View;
 
 /**
  * @author Emilio Sánchez Catalán y Víctor Manuel Pérez Cámara
- * @version 1.0
+ * @version 2.0
  */
 public class MainActivity extends AppCompatActivity implements Service {
 
     TabLayout tabLayout;
     ViewPager viewPager;
+
     /**
      * Metodo encargado de crear la Activity principal. Donde se vincula la activity al layout principal
-     * y realiza la transacción con el fragmento Authfragment.
+     * y realiza la transacción con los fragmentos Authfragment  y AuthQRFragment.
      *
      * @param savedInstanceState
      */
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements Service {
 
     }
 
+    /*
+     * Método encargado de comprobar si ya se ha iniciado sesión anteriormente y en caso de ser así
+     * comprobar si la autenticacíon siga siendo válida.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -50,18 +55,33 @@ public class MainActivity extends AppCompatActivity implements Service {
             Verificacion verf = new Verificacion();
             verf.execute(sesion_id, expires);
 
-        }else {
+        } else {
             tabLayout.setVisibility(View.VISIBLE);
             viewPager.setVisibility(View.VISIBLE);
         }
     }
 
+    /**
+     * Clase Asyncrona que se encarga de verificar la sesión con el servidor.
+     */
     private class Verificacion extends AsyncTask<String, Void, String> implements Cliente {
+        /**
+         * Ejecución de la verificación
+         *
+         * @param params parametros almacenados (Session-ID y Expires)
+         * @return el resultado del servidor
+         */
         @Override
         protected String doInBackground(String... params) {
             return verificacion(params[0], params[1]);
         }
 
+        /**
+         * Método ejecutado tras recibir la respuesta del servidor. En caso de ser correcta la verificación
+         * se iniciará el la vista clientes en caso de ser incorrecta se permanecerá en la activity actual.
+         *
+         * @param s respuesta del servidor recibido del metodo doInBackground.
+         */
         @Override
         protected void onPostExecute(String s) {
             ParseServerResponses serverResponses = new ParseServerResponses(s);
@@ -95,6 +115,12 @@ public class MainActivity extends AppCompatActivity implements Service {
             return null;
         }
 
+        /**
+         * Metodo encargado de realizar la verificación de sesión con el servidor.
+         * @param sesion_id cod_mesa codificado en base64 con el num_session.
+         * @param expires tiempo de expiracion de la sesión.
+         * @return devuelve la respuesta del servidor.
+         */
         @Override
         public String verificacion(String sesion_id, String expires) {
             Datos datos = new Datos(4, sesion_id, expires);
